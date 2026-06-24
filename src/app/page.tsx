@@ -79,15 +79,15 @@ function move(board: Board, direction: string): { board: Board; score: number } 
     return { board: r.board.map(row => [...row].reverse()), score: r.score };
   }
   if (direction === 'up') {
-    b = rotateBoard(b);
-    const r = moveLeft(b);
-    b = rotateBoard(rotateBoard(rotateBoard(r.board)));
-    return { board: b, score: r.score };
-  }
-  if (direction === 'down') {
     b = rotateBoard(rotateBoard(rotateBoard(b)));
     const r = moveLeft(b);
     b = rotateBoard(r.board);
+    return { board: b, score: r.score };
+  }
+  if (direction === 'down') {
+    b = rotateBoard(b);
+    const r = moveLeft(b);
+    b = rotateBoard(rotateBoard(rotateBoard(r.board)));
     return { board: b, score: r.score };
   }
   return { board, score: totalScore };
